@@ -1,0 +1,16 @@
+def ab(d, n, a, b, v, maxp):
+    if d == 2:
+        return v[n]
+    if maxp:
+        for i in range(2):
+            a = max(a, ab(d+1, n*2+i, a, b, v, False))
+            if a >= b: break
+        return a
+    else:
+        for i in range(2):
+            b = min(b, ab(d+1, n*2+i, a, b, v, True))
+            if a >= b: break
+        return b
+
+v = [3, 5, 2, 9]
+print("Best value:", ab(0, 0, -999, 999, v, True))
